@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    
+
+    <style>
+        main {
+            margin: 120px;
+            padding: 20px;
+            text-align: center;
+            justify-content: center;
+        }
+        .button-with-margin {
+            margin: 15px;
+        }
+        .calculator {
+            padding: 20px;
+            border-radius: 10px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        select, input {
+            width: 50%;
+            padding: 8px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        #result {
+            font-weight: bold;
+        }
+        .firstname{
+             text-align: left;
+             justify-content: left;
+             font-size: larger;
+             font-weight: bold;
+             padding-right: 100px;
+             padding-left: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav>
+            <div class="firstname">Logalatoor</div>
+            <ul>
+                <li><a href="Beranda.html" class="nav-link">Kembali</a></li>
+                <li><a href="kalkulator-log.html" class="nav-link active">Kalkulator</a></li>
+                <li><a href="Materi-Fungsi-Logaritma.html" class="nav-link">Fungsi Logaritma</a></li>
+                <li><a href="Tentang-kami.html" class="nav-link">Tentang Kami</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+    <div class="calculator">
+        <label for="base">Basis:</label>
+        <input type="number" id="base" placeholder="Masukkan angka a">
+        <br>
+
+        <label for="number">Angka:</label>
+        <input type="number" id="number" placeholder="Masukkan angka x">
+        <br>
+
+        <label for="logType">Jenis Logaritma:</label>
+        <select id="logType">
+            <option value="log">Logaritma Basis-b</option>
+            <option value="ln">Logaritma Natural (ln)</option>
+            <option value="log10">Logaritma Basis-10 (log10)</option>
+            <option value="log2">Logaritma Basis-2 (log2)</option>
+        </select>
+        <br>
+
+        <button onclick="calculateLog()">Hitung</button>
+        <br>
+
+        <p id="result"></p>
+    </div>
+
+    <script>
+        function calculateLog() {
+            const base = parseFloat(document.getElementById('base').value);
+            const number = parseFloat(document.getElementById('number').value);
+            const logType = document.getElementById('logType').value;
+            let result;
+
+            if (logType === 'log') {
+                if (base > 0 && number > 0) {
+                    result = Math.log(number) / Math.log(base);
+                } else {
+                    result = 'Masukkan angka yang valid.';
+                }
+            } else if (logType === 'ln') {
+                if (number > 0) {
+                    result = Math.log(number);
+                } else {
+                    result = 'Masukkan angka yang valid.';
+                }
+            } else if (logType === 'log10') {
+                if (number > 0) {
+                    result = Math.log10(number);
+                } else {
+                    result = 'Masukkan angka yang valid.';
+                }
+            } else if (logType === 'log2') {
+                if (number > 0) {
+                    result = Math.log2(number);
+                } else {
+                    result = 'Masukkan angka yang valid.';
+                }
+            } else {
+                result = 'Pilih jenis logaritma yang valid.';
+            }
+
+            document.getElementById('result').textContent = `Hasilnya adalah: ${result.toFixed(4)}`;
+        }
+    </script>
+    </main>
+
+</body>
+</html>
